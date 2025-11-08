@@ -76,6 +76,26 @@ var postContent = Console.ReadLine();
 var post = new Post { Title = postTitle, Content = postContent };
 db.AddPost(targetBlog.First(), post);
 
+//display all posts
+
+Console.WriteLine("what blogs posts do you want to see");
+var targBlog = db.Blogs.Where(b => b.Name == Console.ReadLine());
+
+var postsquery = db.Posts.Where(b => b.Blog == targBlog.First());
+
+Console.WriteLine($"All posts in the database: {postsquery.Count()}");
+
+
+foreach (var item in postsquery)
+
+
+{
+
+
+  Console.WriteLine(item.Blog.Name, item.Title, item.Content);
+
+
+}
 
 
 
