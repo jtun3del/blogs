@@ -11,6 +11,13 @@ public class DataContext : DbContext
     this.SaveChanges();
   }
 
+  public void AddPost(Blog blog, Post post)
+  {
+    blog.Posts.Add(post);
+    this.Posts.Add(post);
+    this.SaveChanges();
+  }
+
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
     // *******************************************************************

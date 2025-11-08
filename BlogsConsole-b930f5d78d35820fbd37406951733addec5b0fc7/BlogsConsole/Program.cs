@@ -8,7 +8,8 @@ logger.Info("Program started");
 
 
 
-
+//create the data context
+var db = new DataContext();
 // Create and save a new Blog
 
 
@@ -27,7 +28,7 @@ var blog = new Blog { Name = name };
 
 
 
-var db = new DataContext();
+
 
 
 db.AddBlog(blog);
@@ -61,5 +62,22 @@ foreach (var item in query)
 
 
 }
+//create post
+Console.WriteLine("what Blog are you posting to");
+
+var targetBlog = db.Blogs.Where(b => b.Name == Console.ReadLine());
+Console.WriteLine("Enter a title for a new Post: ");
+
+var postTitle = Console.ReadLine();
+
+Console.WriteLine("Enter content for a new Post:");
+var postContent = Console.ReadLine();
+
+var post = new Post { Title = postTitle, Content = postContent };
+db.AddPost(targetBlog.First(), post);
+
+
+
+
 
 logger.Info("Program ended");
